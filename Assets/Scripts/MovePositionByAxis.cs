@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class MovePositionByAxis : MonoBehaviour
@@ -37,32 +38,41 @@ public class MovePositionByAxis : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 movement = InputManager.instance.movementInput;
+     
+
+        Vector3 moveDirection = new Vector3(
+            UiManager.instance.PositionJoystick.Direction.x,
+            0,
+            UiManager.instance.PositionJoystick.Direction.y);
+
+        Vector3 globalVelocity = moveDirection * speed;
+
+        // Appliquer la vélocité au Rigidbody
+        physicsBody.velocity = new Vector3(globalVelocity.x, physicsBody.velocity.y, globalVelocity.z);
 
 
-        if (moveWithJoystick)
+
+
+        Vector2 directionJoystickValue = UiManager.instance.PositionJoystick.Direction;
+        if (UiManager.instance.RotationJoystick.Direction.magnitude > 0)
         {
-            movement = new Vector3(
-                UiManager.instance.PositionJoystick.Direction.x,
-                0.0f,
-                UiManager.instance.PositionJoystick.Direction.y);
+            directionJoystickValue = UiManager.instance.RotationJoystick.Direction;
         }
-
-        Vector3 moveDirection = Quaternion.AngleAxis(this.transform.rotation.y * 180, Vector3.up) * movement;
-
-        Vector3 newVelocity = moveDirection* speed;
-        newVelocity.y = physicsBody.velocity.y;
-        physicsBody.velocity = newVelocity;
-
-
-        Vector2 directionJoystickValue = UiManager.instance.RotationJoystick.Direction;
+      
+            
         Vector3 LookDirection = new Vector3(directionJoystickValue.x, 0, directionJoystickValue.y);
 
-        if (LookDirection.magnitude > 0.1f)
-        {
-            Quaternion toRotation = Quaternion.LookRotation(LookDirection.normalized);
-            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, Time.deltaTime * rotationSpeed);
-        }
+        Quaternion toRotation = Quaternion.LookRotation(LookDirection.normalized);
+        transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, Time.deltaTime * rotationSpeed);
+     
+
+
+        //physicsBody.velocity = transform.forward * speed * UiManager.instance.PositionJoystick.Direction.magnitude;
+
+
+
+
+
 
 
     }
