@@ -12,10 +12,15 @@ public class MovePositionByAxis : MonoBehaviour
     private float speed = 2f;
 
     [SerializeField]
+    private float rotationSpeed = 10f;
+
+    [SerializeField]
     private Rigidbody physicsBody;
 
     [SerializeField]
     private bool moveWithJoystick = false;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -53,8 +58,12 @@ public class MovePositionByAxis : MonoBehaviour
         Vector2 directionJoystickValue = UiManager.instance.RotationJoystick.Direction;
         Vector3 LookDirection = new Vector3(directionJoystickValue.x, 0, directionJoystickValue.y);
 
-        
-        
-        
+        if (LookDirection.magnitude > 0.1f)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(LookDirection.normalized);
+            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, Time.deltaTime * rotationSpeed);
+        }
+
+
     }
 }
