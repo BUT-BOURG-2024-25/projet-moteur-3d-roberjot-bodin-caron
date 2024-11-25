@@ -18,7 +18,7 @@ public class Weapon : MonoBehaviour
         if (UiManager.instance.RotationJoystick.Direction.magnitude>0)
         {
             Shoot();
-        nextFireTime = Time.time + fireRate;
+            nextFireTime = Time.time + fireRate;
         }
         
         
