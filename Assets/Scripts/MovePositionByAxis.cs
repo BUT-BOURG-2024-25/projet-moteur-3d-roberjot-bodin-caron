@@ -12,9 +12,6 @@ public class MovePositionByAxis : MonoBehaviour
     private float speed = 2f;
 
     [SerializeField]
-    private float jumpPower = 20;
-
-    [SerializeField]
     private Rigidbody physicsBody;
 
     [SerializeField]
@@ -23,19 +20,11 @@ public class MovePositionByAxis : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InputManager.instance.registerOnJumpInput(jump);
     }
 
 
     private void OnDestroy()
     {
-        InputManager.instance.unregisterOnJumpInput(jump);
-    }
-
-
-    private void jump(InputAction.CallbackContext callbackContext)
-    {
-        physicsBody.AddForce(Vector3.up * jumpPower);
     }
 
 

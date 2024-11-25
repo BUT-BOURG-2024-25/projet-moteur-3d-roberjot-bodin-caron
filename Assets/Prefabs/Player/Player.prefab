@@ -132,12 +132,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4543198049263802438}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86fb5bcd7d487eb469be8c7c4669d48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  jumpPower: 20
-  physicsBody: {fileID: 0}
+  speed: 8
+  physicsBody: {fileID: 3537487876588061951}
   moveWithJoystick: 0
