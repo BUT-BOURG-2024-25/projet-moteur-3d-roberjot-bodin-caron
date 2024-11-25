@@ -38,12 +38,13 @@ public class MovePositionByAxis : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     
+
+        Vector2 directionJoystickValue = UiManager.instance.PositionJoystick.Direction;
 
         Vector3 moveDirection = new Vector3(
-            UiManager.instance.PositionJoystick.Direction.x,
+            directionJoystickValue.x,
             0,
-            UiManager.instance.PositionJoystick.Direction.y);
+            directionJoystickValue.y);
 
         Vector3 globalVelocity = moveDirection * speed;
 
@@ -53,21 +54,25 @@ public class MovePositionByAxis : MonoBehaviour
 
 
 
-        Vector2 directionJoystickValue = UiManager.instance.PositionJoystick.Direction;
-        if (UiManager.instance.RotationJoystick.Direction.magnitude > 0)
+        
+        Vector2 rotationJoystickValue = UiManager.instance.RotationJoystick.Direction;
+
+        if (rotationJoystickValue.magnitude > 0 || directionJoystickValue.magnitude>0)
         {
-            directionJoystickValue = UiManager.instance.RotationJoystick.Direction;
+            Vector2 playerDirection = directionJoystickValue;
+            if(rotationJoystickValue.magnitude > 0)
+            {
+                playerDirection = UiManager.instance.RotationJoystick.Direction;
+            }
+
+            Vector3 LookDirection = new Vector3(playerDirection.x, 0, playerDirection.y);
+
+            Quaternion toRotation = Quaternion.LookRotation(LookDirection.normalized);
+            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, Time.deltaTime * rotationSpeed);
         }
       
             
-        Vector3 LookDirection = new Vector3(directionJoystickValue.x, 0, directionJoystickValue.y);
-
-        Quaternion toRotation = Quaternion.LookRotation(LookDirection.normalized);
-        transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, Time.deltaTime * rotationSpeed);
-     
-
-
-        //physicsBody.velocity = transform.forward * speed * UiManager.instance.PositionJoystick.Direction.magnitude;
+        
 
 
 
