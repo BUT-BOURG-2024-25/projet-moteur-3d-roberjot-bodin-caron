@@ -8,8 +8,11 @@ public class UiManager : MonoBehaviour
     private static UiManager _instance = null;
 
     [SerializeField]
-    public Joystick joystick = null;
-  
+    public Joystick PositionJoystick = null;
+
+    [SerializeField]
+    public Joystick RotationJoystick = null;
+
 
 
     void Awake()

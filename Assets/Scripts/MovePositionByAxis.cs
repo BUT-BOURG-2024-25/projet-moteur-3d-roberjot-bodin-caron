@@ -38,17 +38,22 @@ public class MovePositionByAxis : MonoBehaviour
         if (moveWithJoystick)
         {
             movement = new Vector3(
-                UiManager.instance.joystick.Direction.x,
+                UiManager.instance.PositionJoystick.Direction.x,
                 0.0f,
-                UiManager.instance.joystick.Direction.y);
+                UiManager.instance.PositionJoystick.Direction.y);
         }
 
-        UnityEngine.Debug.Log(this.transform.rotation.y *180);
         Vector3 moveDirection = Quaternion.AngleAxis(this.transform.rotation.y * 180, Vector3.up) * movement;
 
         Vector3 newVelocity = moveDirection* speed;
         newVelocity.y = physicsBody.velocity.y;
         physicsBody.velocity = newVelocity;
+
+
+        Vector2 directionJoystickValue = UiManager.instance.RotationJoystick.Direction;
+        Vector3 LookDirection = new Vector3(directionJoystickValue.x, 0, directionJoystickValue.y);
+
+        
         
         
     }
