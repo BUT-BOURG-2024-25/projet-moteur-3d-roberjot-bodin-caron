@@ -18,10 +18,6 @@ public class MovePositionByAxis : MonoBehaviour
     [SerializeField]
     private Rigidbody physicsBody;
 
-    [SerializeField]
-    private bool moveWithJoystick = false;
-
-
 
     // Start is called before the first frame update
     void Start()

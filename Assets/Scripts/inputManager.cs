@@ -35,6 +35,5 @@ public class InputManager : MonoBehaviour
     {
         Vector2 moveInput = movementAction.action.ReadValue<Vector2>();
         movementInput = new Vector3(moveInput.x, 0, moveInput.y);
-        Debug.Log(moveInput.sqrMagnitude);
     }
 }
