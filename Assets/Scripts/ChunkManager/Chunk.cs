@@ -1,26 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.AssetImporters;
 using UnityEngine;
 
-public class Chunk
+public class Chunk : MonoBehaviour
 {
-    private Vector2 position;
-    private int chunkId;
-    
-
-    Chunk(Vector2 chunkPos)
+    public Vector2 RelativePosition { get; private set; }
+    public int Id { get; private set; }
+    public void Load(Vector2 relativePos)
     {
-        this.position = chunkPos;
-        this.chunkId = ChunkUtils.ConvertToChunkId(chunkPos);
-    }
-
-    private void start()
-    {
-
-    }
-
-    public int GetId()
-    {
-        return this.chunkId;
+        this.RelativePosition = relativePos;
+        this.Id = ChunkUtils.ConvertToChunkId(RelativePosition);
     }
 }

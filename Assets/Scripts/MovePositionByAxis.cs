@@ -66,15 +66,5 @@ public class MovePositionByAxis : MonoBehaviour
             Quaternion toRotation = Quaternion.LookRotation(LookDirection.normalized);
             transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, Time.deltaTime * rotationSpeed);
         }
-      
-            
-        
-
-
-
-
-
-
-
     }
 }
