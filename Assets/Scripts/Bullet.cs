@@ -1,21 +1,41 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
-{
-    public float damage = 10f; 
-    public float lifetime = 5f;
+public class Bullet : MonoBehaviour {
+    [SerializeField]
+    private float Damage = 10f;
+
+    [SerializeField]
+    private float Lifetime = 1.5f;
+
+    [SerializeField]
+    private float Speed = 1f;
 
     void Start()
     {
-        Destroy(gameObject, lifetime);
+        Destroy(gameObject, Lifetime);
     }
 
-    void OnCollisionEnter(Collision collision)
+    void Update()
     {
-        Health health = collision.gameObject.GetComponent<Health>();
+        float distance = Time.deltaTime * Speed;
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, transform.forward, out hit, distance, LayerMask.NameToLayer("MapObject")))
+        {
+            collide(hit.collider.gameObject);
+        }else
+        { 
+            Vector3 nextPosition = transform.position + transform.forward * distance;
+            transform.position = nextPosition;
+        }
+    }
+
+    void collide(GameObject objecthit)
+    {
+        Health health = objecthit.GetComponent<Health>();
         if (health != null)
         {
-            health.TakeDamage(damage);
+            health.TakeDamage(Damage);
         }
 
         Destroy(gameObject);

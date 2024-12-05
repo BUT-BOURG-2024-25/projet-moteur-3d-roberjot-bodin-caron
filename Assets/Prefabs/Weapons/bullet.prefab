@@ -78,12 +78,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7636da9248ea3ef4d8d92981d78b3ccb, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 642031948912740949}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7636da9248ea3ef4d8d92981d78b3ccb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7444506568801608003}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7636da9248ea3ef4d8d92981d78b3ccb, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2567223273282595099}
   m_SourcePrefab: {fileID: 100100000, guid: 7636da9248ea3ef4d8d92981d78b3ccb, type: 3}
 --- !u!1 &684104448997401119 stripped
@@ -91,56 +85,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7636da9248ea3ef4d8d92981d78b3ccb, type: 3}
   m_PrefabInstance: {fileID: 414054702092394318}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &642031948912740949
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 684104448997401119}
-  serializedVersion: 4
-  m_Mass: 0.01
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!136 &7444506568801608003
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 684104448997401119}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.009999998
-  m_Height: 0.06
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2567223273282595099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,5 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cd045e8afa068a43907a99a56e44b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  lifetime: 5
+  Damage: 100
+  Lifetime: 3
+  Speed: 5

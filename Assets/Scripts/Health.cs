@@ -1,13 +1,15 @@
+using System;
 using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public float maxHealth = 100f;
+    [SerializeField]
+    private float MaxHealth = 100f;
     private float currentHealth;
 
     void Start()
     {
-        currentHealth = maxHealth;
+        currentHealth = MaxHealth;
     }
 
     public void TakeDamage(float damage)
@@ -21,13 +23,9 @@ public class Health : MonoBehaviour
     }
 
 
-    public void RestoreDamage(float damage)
+    public void RestoreHealth(float health)
     {
-        currentHealth += damage;
-        if (currentHealth>maxHealth)
-        {
-            currentHealth= maxHealth;
-        }
+        currentHealth = Math.Max(currentHealth + health, MaxHealth);
     }
 
     void Die()

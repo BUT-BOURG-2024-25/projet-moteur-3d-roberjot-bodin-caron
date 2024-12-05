@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7234925967729226818}
   - component: {fileID: -6959979583917852395}
   - component: {fileID: 6583175681232782853}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,4 +162,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c7a64d9ea871704caaaef4d5b49281a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  MaxHealth: 100

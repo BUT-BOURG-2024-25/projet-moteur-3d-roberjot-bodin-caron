@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using static System.Net.Mime.MediaTypeNames;
 
 public class XPManager : MonoBehaviour
 {
@@ -11,25 +6,16 @@ public class XPManager : MonoBehaviour
     [SerializeField] AnimationCurve experienceCurve;
 
     int currentLevel, totalExperience;
-    int previousLevelsExperience, nextLevelsExperience;
 
     [Header("Interface")]
     [SerializeField] UnityEngine.UI.Image experienceFill;
 
     void Start()
     {
-        UpdateLevel();
+        UpdateInterface();
     }
 
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            AddExperience(5);
-        }
-    }
-
-    public void AddExperience(int amount)
+    public void IncrementXP(int amount)
     {
         totalExperience += amount;
         CheckForLevelUp();
@@ -38,24 +24,21 @@ public class XPManager : MonoBehaviour
 
     void CheckForLevelUp()
     {
+        int nextLevelsExperience = (int)experienceCurve.Evaluate(currentLevel + 1);
         if (totalExperience >= nextLevelsExperience)
         {
             currentLevel++;
-            UpdateLevel();
+            UpdateInterface();
 
             // Start level up sequence... Possibly vfx?
         }
     }
 
-    void UpdateLevel()
-    {
-        previousLevelsExperience = (int)experienceCurve.Evaluate(currentLevel);
-        nextLevelsExperience = (int)experienceCurve.Evaluate(currentLevel + 1);
-        UpdateInterface();
-    }
-
     void UpdateInterface()
     {
+        int previousLevelsExperience = (int)experienceCurve.Evaluate(currentLevel);
+        int nextLevelsExperience = (int)experienceCurve.Evaluate(currentLevel + 1);
+
         int start = totalExperience - previousLevelsExperience;
         int end = nextLevelsExperience - previousLevelsExperience;
 
