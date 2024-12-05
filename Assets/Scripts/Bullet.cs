@@ -18,14 +18,14 @@ public class Bullet : MonoBehaviour {
     void Update()
     {
         float distance = Time.deltaTime * Speed;
-        RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, transform.forward, out hit, distance, LayerMask.NameToLayer("MapObject")))
+        if (Physics.Raycast(transform.position, transform.up, out RaycastHit hit, distance))
         {
             collide(hit.collider.gameObject);
-        }else
-        { 
-            Vector3 nextPosition = transform.position + transform.forward * distance;
+        }
+        else
+        {
+            Vector3 nextPosition = transform.position + transform.up * distance;
             transform.position = nextPosition;
         }
     }

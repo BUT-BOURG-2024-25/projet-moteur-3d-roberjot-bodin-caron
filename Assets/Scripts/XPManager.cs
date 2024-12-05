@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class XPManager : MonoBehaviour
+public class XPManager : Singleton<XPManager>
 {
     [Header("Experience")]
     [SerializeField] AnimationCurve experienceCurve;

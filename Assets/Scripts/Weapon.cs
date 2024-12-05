@@ -9,9 +9,6 @@ public class Weapon : MonoBehaviour
     private Transform FirePoint; // Le point d'où les balles sont tirées
 
     [SerializeField]
-    private float BulletSpeed = 20f; // Vitesse de la balle
-
-    [SerializeField]
     private float FireRate = 0.5f; // Temps entre les tirs
     private float nextFireTime;
 

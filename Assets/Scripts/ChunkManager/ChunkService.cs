@@ -1,13 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using UnityEditor.UI;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
-using UnityEngine.UIElements;
 
-public class ChunkService : MonoBehaviour
+public class ChunkService : Singleton<ChunkService>
 {
 
     [SerializeField]

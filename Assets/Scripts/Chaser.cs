@@ -5,7 +5,10 @@ using UnityEngine;
 public class Chaser : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 20.0f;
+    private float Speed = 20.0f;
+
+    [SerializeField]
+    private int Xp = 10;
 
     private Transform target;
 
@@ -34,6 +37,11 @@ public class Chaser : MonoBehaviour
         //get the distance between the chaser and the target
         float distance = Vector3.Distance(transform.position, target.position);
 
-        transform.position += transform.forward * speed * Time.deltaTime;
+        transform.position += transform.forward * Speed * Time.deltaTime;
+    }
+
+    void OnDestroy()
+    {
+        XPManager.Instance.IncrementXP(Xp);
     }
 }
