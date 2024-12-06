@@ -151,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Drop: {fileID: -7467482049995097071, guid: 0406520b06b23784194c3debea07879a, type: 3}
   DropLuck: 0.1
-  MaxHealth: 100
+  MaxHealth: 50
 --- !u!114 &3503211143392166814
 MonoBehaviour:
   m_ObjectHideFlags: 0

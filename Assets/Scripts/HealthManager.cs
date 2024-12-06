@@ -18,11 +18,24 @@ public class HealthManager : Singleton<HealthManager>
     // Start is called before the first frame update
     void Start()
     {
+        RestartButton.onClick.AddListener(() =>
+        {
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentSceneName);
+            Time.timeScale = 1;
+        });
+
         RestartButton.gameObject.SetActive(false);
         currentHealth = MaxHealth;
         UpdateInterface();
     }
 
+    public void IncrementMaxHealth(int health)
+    {
+        MaxHealth += health;
+        currentHealth += health;
+        UpdateInterface();
+    }
 
     public void TakeDamage(int damage)
     {
@@ -35,12 +48,6 @@ public class HealthManager : Singleton<HealthManager>
             RestartButton.gameObject.SetActive(true);
 
             Time.timeScale = 0;
-            RestartButton.onClick.AddListener(() =>
-            {
-                string currentSceneName = SceneManager.GetActiveScene().name;
-                SceneManager.LoadScene(currentSceneName);
-                Time.timeScale = 1;
-            });
         }
     }
 

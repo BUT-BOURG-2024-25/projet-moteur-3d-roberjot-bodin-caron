@@ -19,7 +19,7 @@ public class XPManager : Singleton<XPManager>
 
         if (lastLevel != this.GetLevel())
         {
-            // level up
+            StatsManager.Instance?.StartUpgrade(); 
         }
 
         UpdateInterface();
@@ -27,27 +27,40 @@ public class XPManager : Singleton<XPManager>
 
     void UpdateInterface()
     {
-
         int currentLevel = this.GetLevel();
-        int previousLevelsExperience = this.GetXpForLevel(currentLevel);
+        int currentLevelExperience = this.GetXpForLevel(currentLevel);
         int nextLevelsExperience = this.GetXpForLevel(currentLevel + 1);
-
-        int start = totalExperience - previousLevelsExperience;
-        int end = nextLevelsExperience - previousLevelsExperience;
-
+        print(currentLevel);
+        print(currentLevelExperience);
+        print(totalExperience);
+        print(nextLevelsExperience);
         if (ExperienceFill != null)
         {
-            ExperienceFill.fillAmount = (float)start / (float)end;
+            float fillValue = (float)(totalExperience - currentLevelExperience)
+                            / (float)(nextLevelsExperience - currentLevelExperience);
+            ExperienceFill.fillAmount = fillValue;
+        }
+        else
+        {
+            print("ExperienceFill n'est pas assigné !");
         }
     }
 
     int GetLevel()
     {
-        return Mathf.FloorToInt((totalExperience - 50) / 20);
+        int level = 0;
+        int currentXp = totalExperience;
+
+        while (currentXp >= this.GetXpForLevel(level + 1))
+        {
+            level++;
+        }
+
+        return level;
     }
 
     int GetXpForLevel(int level)
     {
-        return 50 + 20 * level;
+        return (int)(20 * Mathf.Pow(level, 2));
     }
 }

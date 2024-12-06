@@ -48,9 +48,4 @@ public class Mob : MonoBehaviour
             HealthManager.Instance.TakeDamage(Damage);
         }
     }
-
-    void OnDestroy()
-    {
-        XPManager.Instance.IncrementXP(Xp);
-    }
 }

@@ -6,6 +6,9 @@ public class Health : MonoBehaviour
 {
 
     [SerializeField]
+    private int Xp = 10;
+
+    [SerializeField]
     private Drop Drop;
 
     [SerializeField]
@@ -48,6 +51,7 @@ public class Health : MonoBehaviour
             Instantiate(Drop, transform.position + diffPos, transform.rotation);
         }
 
+        XPManager.Instance.IncrementXP(Xp);
         Destroy(gameObject);
     }
 }
