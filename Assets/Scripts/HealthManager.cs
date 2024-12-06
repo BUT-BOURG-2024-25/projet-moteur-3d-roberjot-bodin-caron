@@ -1,11 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class HealthManager : Singleton<HealthManager>
 {
     [SerializeField]
     private int MaxHealth = 100;
+
+    [SerializeField]
+    private Button RestartButton;
 
     private int currentHealth;
 
@@ -15,6 +18,7 @@ public class HealthManager : Singleton<HealthManager>
     // Start is called before the first frame update
     void Start()
     {
+        RestartButton.gameObject.SetActive(false);
         currentHealth = MaxHealth;
         UpdateInterface();
     }
@@ -22,8 +26,22 @@ public class HealthManager : Singleton<HealthManager>
 
     public void TakeDamage(int damage)
     {
+        if (currentHealth <= 0) return;
+
         currentHealth = Mathf.Max(currentHealth - damage, 0);
         UpdateInterface();
+
+        if (currentHealth <= 0) {
+            RestartButton.gameObject.SetActive(true);
+
+            Time.timeScale = 0;
+            RestartButton.onClick.AddListener(() =>
+            {
+                string currentSceneName = SceneManager.GetActiveScene().name;
+                SceneManager.LoadScene(currentSceneName);
+                Time.timeScale = 1;
+            });
+        }
     }
 
     public void RestoreHealth(int health)
