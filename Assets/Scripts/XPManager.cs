@@ -2,13 +2,10 @@ using UnityEngine;
 
 public class XPManager : Singleton<XPManager>
 {
-    [Header("Experience")]
-    [SerializeField] AnimationCurve experienceCurve;
-
-    int currentLevel, totalExperience;
+    private int totalExperience;
 
     [Header("Interface")]
-    [SerializeField] UnityEngine.UI.Image experienceFill;
+    [SerializeField] UnityEngine.UI.Image ExperienceFill;
 
     void Start()
     {
@@ -17,31 +14,40 @@ public class XPManager : Singleton<XPManager>
 
     public void IncrementXP(int amount)
     {
+        int lastLevel = this.GetLevel();
         totalExperience += amount;
-        CheckForLevelUp();
-        UpdateInterface();
-    }
 
-    void CheckForLevelUp()
-    {
-        int nextLevelsExperience = (int)experienceCurve.Evaluate(currentLevel + 1);
-        if (totalExperience >= nextLevelsExperience)
+        if (lastLevel != this.GetLevel())
         {
-            currentLevel++;
-            UpdateInterface();
-
-            // Start level up sequence... Possibly vfx?
+            // level up
         }
+
+        UpdateInterface();
     }
 
     void UpdateInterface()
     {
-        int previousLevelsExperience = (int)experienceCurve.Evaluate(currentLevel);
-        int nextLevelsExperience = (int)experienceCurve.Evaluate(currentLevel + 1);
+
+        int currentLevel = this.GetLevel();
+        int previousLevelsExperience = this.GetXpForLevel(currentLevel);
+        int nextLevelsExperience = this.GetXpForLevel(currentLevel + 1);
 
         int start = totalExperience - previousLevelsExperience;
         int end = nextLevelsExperience - previousLevelsExperience;
 
-        experienceFill.fillAmount = (float)start / (float)end;
+        if (ExperienceFill != null)
+        {
+            ExperienceFill.fillAmount = (float)start / (float)end;
+        }
+    }
+
+    int GetLevel()
+    {
+        return Mathf.FloorToInt((totalExperience - 50) / 20);
+    }
+
+    int GetXpForLevel(int level)
+    {
+        return 50 + 20 * level;
     }
 }

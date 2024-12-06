@@ -18,26 +18,13 @@ public class MovePositionByAxis : MonoBehaviour
     [SerializeField]
     private Rigidbody physicsBody;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-
-    private void OnDestroy()
-    {
-    }
-
-
-
     // Update is called once per frame
     void Update()
     {
 
         Vector2 directionJoystickValue = UiManager.instance.PositionJoystick.Direction;
 
-        Vector3 moveDirection = new Vector3(
+        Vector3 moveDirection = new(
             directionJoystickValue.x,
             0,
             directionJoystickValue.y);
@@ -46,11 +33,6 @@ public class MovePositionByAxis : MonoBehaviour
 
         // Appliquer la vélocité au Rigidbody
         physicsBody.velocity = new Vector3(globalVelocity.x, physicsBody.velocity.y, globalVelocity.z);
-
-
-
-
-        
         Vector2 rotationJoystickValue = UiManager.instance.RotationJoystick.Direction;
 
         if (rotationJoystickValue.magnitude > 0 || directionJoystickValue.magnitude>0)

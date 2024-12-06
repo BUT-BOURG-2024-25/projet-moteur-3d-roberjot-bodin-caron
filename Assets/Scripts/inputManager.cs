@@ -4,31 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputManager : MonoBehaviour
+public class InputManager : Singleton<InputManager>
 {
     [SerializeField]
     private InputActionReference movementAction = null;
 
-    public static InputManager instance { get { return _instance; } }
-    private static InputManager _instance = null;
-
     public Vector3 movementInput { get; private set; }
 
-
-
-
-    private void Awake()
-    {
-        if (_instance == null)
-            _instance = this;
-        else
-            Destroy(gameObject);
-    }
-    
-    void Start()
-    {
-        
-    }
+  
 
     // Update is called once per frame
     void Update()

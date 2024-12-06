@@ -18,14 +18,14 @@ public class Bullet : MonoBehaviour {
     void Update()
     {
         float distance = Time.deltaTime * Speed;
+        Vector3 nextPosition = transform.position + transform.up * distance;
 
-        if (Physics.Raycast(transform.position, transform.up, out RaycastHit hit, distance))
+        if (Physics.Raycast(transform.position, transform.up, out RaycastHit hit, distance) || Physics.Raycast(nextPosition, -transform.up, out hit, distance))
         {
             collide(hit.collider.gameObject);
         }
         else
         {
-            Vector3 nextPosition = transform.position + transform.up * distance;
             transform.position = nextPosition;
         }
     }
@@ -33,11 +33,10 @@ public class Bullet : MonoBehaviour {
     void collide(GameObject objecthit)
     {
         Health health = objecthit.GetComponent<Health>();
-        if (health != null)
-        {
-            health.TakeDamage(Damage);
-        }
-
+        Rigidbody body = objecthit.GetComponent<Rigidbody>();
+        health?.TakeDamage(Damage);
+        body?.AddForce(transform.up * 50, ForceMode.Impulse);
+        
         Destroy(gameObject);
     }
 }

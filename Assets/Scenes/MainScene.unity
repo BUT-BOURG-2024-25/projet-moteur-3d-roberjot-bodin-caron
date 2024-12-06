@@ -297,6 +297,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 240365840}
+  - component: {fileID: 240365841}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -326,6 +327,20 @@ RectTransform:
   m_AnchoredPosition: {x: -310, y: -55}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &240365841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240365839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c9e9fecc7970594f95914e187393ada, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 125
+  Fill: {fileID: 1102010321}
 --- !u!1 &313418474
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,7 +392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19df2892760abe7468a5a22e8735706b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experienceCurve:
+  ExperienceCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -390,18 +405,18 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 99
-      value: 100000
-      inSlope: 1.9979372
-      outSlope: 1.9979372
+      time: 1142.2146
+      value: 12172.319
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  experienceFill: {fileID: 1557762818}
+  ExperienceFill: {fileID: 1557762818}
 --- !u!1 &431183973
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,12 +597,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bcae2b3e648f79489bd3c915bd67476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicMob: {fileID: 694780727032722223, guid: d7fab6fc00b4a8545bd4ede4f278bc1b, type: 3}
-  player: {fileID: 1347733891}
-  time: 10
+  Mobs:
+  - {fileID: 6040804877896546713, guid: d7fab6fc00b4a8545bd4ede4f278bc1b, type: 3}
+  - {fileID: 6040804877896546713, guid: 18d4b23b2f652744ebc6af7319347aa6, type: 3}
+  Player: {fileID: 1347733891}
+  Delay: 2
   groundLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8
 --- !u!4 &556966125
 Transform:
   m_ObjectHideFlags: 0

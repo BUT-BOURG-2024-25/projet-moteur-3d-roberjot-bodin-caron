@@ -1,62 +1,57 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 public class MobsSpawner : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject basicMob;
+    private List<Renderer> Mobs;
 
     [SerializeField]
-    private GameObject player;
+    private GameObject Player;
 
     [SerializeField]
-    private float time = 0.5f;
+    private float Delay = 1f;
 
     [SerializeField]
     private LayerMask groundLayer;
 
     private float timeSinceLastSpawn = 0f;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         timeSinceLastSpawn += Time.deltaTime;
 
-        if (timeSinceLastSpawn >= time)
+        if (timeSinceLastSpawn >= Delay)
         {
             timeSinceLastSpawn = 0f;
+            SpawnRandomMob();
+        }
+    }
 
-            float randomAngle = UnityEngine.Random.Range(0f, 2f * Mathf.PI); 
+    public void SpawnRandomMob()
+    {
+        float randomAngle = Random.Range(0f, 2f * Mathf.PI);
+        float randomDistance = Random.Range(10, 50);
 
-            float randomDistance = UnityEngine.Random.Range(10, 20);
+        float spawnX = Player.transform.position.x + randomDistance * Mathf.Cos(randomAngle);
+        float spawnZ = Player.transform.position.y + randomDistance * Mathf.Sin(randomAngle);
 
-            float spawnX = player.transform.position.x + randomDistance * Mathf.Cos(randomAngle);
-            float spawnZ = player.transform.position.y + randomDistance * Mathf.Sin(randomAngle);
+        Vector3 rayOrigin = new(spawnX, 100f, spawnZ);
 
-            Vector3 rayOrigin = new Vector3(spawnX, 100f, spawnZ);
-            RaycastHit hit;
+        if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, Mathf.Infinity, groundLayer))
+        {
+            int random = Random.Range(0, Mobs.Count);
+            Renderer mobToSpawn = Mobs[random];
+            float spawnY = hit.point.y + mobToSpawn.bounds.size.y / 2;
 
-            if (Physics.Raycast(rayOrigin, Vector3.down, out hit, Mathf.Infinity, groundLayer))
-            {
-                float spawnY = hit.point.y + 1;
+            Vector3 randomSpawnPosition = new(spawnX, spawnY, spawnZ);
 
-                Vector3 randomSpawnPosition = new Vector3(spawnX, spawnY, spawnZ);
-
-                Instantiate(basicMob, randomSpawnPosition, Quaternion.identity);
-            }
-            else
-            {
-                UnityEngine.Debug.LogWarning("Raycast n'a pas touché le sol.");
-            }
-
+            Instantiate(mobToSpawn, randomSpawnPosition, Quaternion.identity);
+        }
+        else
+        {
+            Debug.LogWarning("Raycast n'a pas touché le sol.");
         }
     }
 }

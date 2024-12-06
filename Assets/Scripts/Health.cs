@@ -25,7 +25,7 @@ public class Health : MonoBehaviour
 
     public void RestoreHealth(float health)
     {
-        currentHealth = Math.Max(currentHealth + health, MaxHealth);
+        currentHealth = Math.Min(currentHealth + health, MaxHealth);
     }
 
     void Die()
