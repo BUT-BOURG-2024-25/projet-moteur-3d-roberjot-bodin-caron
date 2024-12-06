@@ -1,8 +1,17 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+
+    [SerializeField]
+    private Drop Drop;
+
+    [SerializeField]
+    [Range(0, 1)]
+    private float DropLuck;
+
     [SerializeField]
     private float MaxHealth = 100f;
     private float currentHealth;
@@ -30,6 +39,15 @@ public class Health : MonoBehaviour
 
     void Die()
     {
+        System.Random randomizr = new System.Random();
+        MeshRenderer renderer = GetComponent<MeshRenderer>();
+        Vector3 diffPos = Vector3.down * renderer.bounds.size.y / 2;
+
+        if(randomizr.NextDouble() <= DropLuck)
+        {
+            Instantiate(Drop, transform.position + diffPos, transform.rotation);
+        }
+
         Destroy(gameObject);
     }
 }

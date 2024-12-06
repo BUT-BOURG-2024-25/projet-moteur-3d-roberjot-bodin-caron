@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1342515872563552941}
   - component: {fileID: 7234925967729226818}
   - component: {fileID: -6959979583917852395}
-  - component: {fileID: 6583175681232782853}
+  - component: {fileID: 5639890713457328768}
   m_Layer: 6
   m_Name: Mob2
   m_TagString: Untagged
@@ -152,7 +152,7 @@ MonoBehaviour:
   Damage: 20
   Speed: 7
   Xp: 50
---- !u!114 &6583175681232782853
+--- !u!114 &5639890713457328768
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,4 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c7a64d9ea871704caaaef4d5b49281a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Drop: {fileID: -7467482049995097071, guid: 0406520b06b23784194c3debea07879a, type: 3}
+  DropLuck: 0.5
   MaxHealth: 100

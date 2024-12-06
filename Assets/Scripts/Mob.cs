@@ -34,7 +34,6 @@ public class Mob : MonoBehaviour
             return;
 
         Vector3 targetPosition = new(target.position.x, transform.position.y, target.position.z);
-
         // face the target
         transform.LookAt(targetPosition);
         Rigidbody rb = GetComponent<Rigidbody>();
