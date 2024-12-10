@@ -51,6 +51,7 @@ public class MobManager : Singleton<MobManager>
             inst.OnDie.AddListener(() =>
             {
                 --MobAmount;
+                UpdateMobLabel();
                 OnAmountChange.Invoke(MobAmount);
             });
 

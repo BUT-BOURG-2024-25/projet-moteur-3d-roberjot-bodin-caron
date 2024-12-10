@@ -19,7 +19,7 @@ public class MovePositionByAxis : MonoBehaviour
     private Rigidbody physicsBody;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         Vector2 directionJoystickValue = UiManager.instance.PositionJoystick.Direction;
