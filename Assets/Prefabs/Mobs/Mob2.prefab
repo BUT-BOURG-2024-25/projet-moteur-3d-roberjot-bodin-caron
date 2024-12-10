@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1342515872563552941}
   - component: {fileID: 7234925967729226818}
   - component: {fileID: -6959979583917852395}
-  - component: {fileID: 5639890713457328768}
   m_Layer: 6
   m_Name: Mob2
   m_TagString: Untagged
@@ -149,21 +148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12623aa4246014d4ea9297f86f9bc515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 20
-  Speed: 7
   Xp: 50
---- !u!114 &5639890713457328768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 694780727032722223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c7a64d9ea871704caaaef4d5b49281a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   Drop: {fileID: -7467482049995097071, guid: 0406520b06b23784194c3debea07879a, type: 3}
-  DropLuck: 0.5
+  DropLuck: 1
   MaxHealth: 100
+  Damage: 20
+  Speed: 5

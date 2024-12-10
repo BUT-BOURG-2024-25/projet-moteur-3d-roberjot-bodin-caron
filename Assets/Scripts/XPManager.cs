@@ -30,10 +30,7 @@ public class XPManager : Singleton<XPManager>
         int currentLevel = this.GetLevel();
         int currentLevelExperience = this.GetXpForLevel(currentLevel);
         int nextLevelsExperience = this.GetXpForLevel(currentLevel + 1);
-        print(currentLevel);
-        print(currentLevelExperience);
-        print(totalExperience);
-        print(nextLevelsExperience);
+
         if (ExperienceFill != null)
         {
             float fillValue = (float)(totalExperience - currentLevelExperience)

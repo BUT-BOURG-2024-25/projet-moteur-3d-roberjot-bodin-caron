@@ -1,32 +1,29 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
-public class MobsSpawner : MonoBehaviour
+public class MobManager : Singleton<MobManager>
 {
-
     [SerializeField]
-    private List<Renderer> Mobs;
+    private List<Mob> Mobs;
 
     [SerializeField]
     private GameObject Player;
 
     [SerializeField]
-    private float Delay = 1f;
+    private Text MobLabel;
 
     [SerializeField]
     private LayerMask groundLayer;
 
-    private float timeSinceLastSpawn = 0f;
 
-    void Update()
+    public UnityEvent<int> OnAmountChange = new();
+    public int MobAmount = 0;
+
+    void Start()
     {
-        timeSinceLastSpawn += Time.deltaTime;
-
-        if (timeSinceLastSpawn >= Delay)
-        {
-            timeSinceLastSpawn = 0f;
-            SpawnRandomMob();
-        }
+        UpdateMobLabel();
     }
 
     public void SpawnRandomMob()
@@ -42,16 +39,34 @@ public class MobsSpawner : MonoBehaviour
         if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, Mathf.Infinity, groundLayer))
         {
             int random = Random.Range(0, Mobs.Count);
-            Renderer mobToSpawn = Mobs[random];
-            float spawnY = hit.point.y + mobToSpawn.bounds.size.y / 2;
+            Mob mobToSpawn = Mobs[random];
+            MeshRenderer renderer = mobToSpawn.GetComponent<MeshRenderer>();
+            if (renderer == null) return;
+
+            float spawnY = hit.point.y + renderer.bounds.size.y / 2;
 
             Vector3 randomSpawnPosition = new(spawnX, spawnY, spawnZ);
 
-            Instantiate(mobToSpawn, randomSpawnPosition, Quaternion.identity);
+            Mob inst = Instantiate(mobToSpawn, randomSpawnPosition, Quaternion.identity);
+            inst.OnDie.AddListener(() =>
+            {
+                --MobAmount;
+                OnAmountChange.Invoke(MobAmount);
+            });
+
+            ++MobAmount;
+            OnAmountChange.Invoke(MobAmount);
         }
         else
         {
             Debug.LogWarning("Raycast n'a pas touché le sol.");
         }
+
+        UpdateMobLabel();
+    }
+
+    private void UpdateMobLabel()
+    {
+        MobLabel.text = "Mobs restants: " + MobAmount;
     }
 }

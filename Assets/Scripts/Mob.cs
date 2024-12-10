@@ -1,6 +1,8 @@
+using System.Diagnostics.Tracing;
+using System.Transactions;
 using UnityEngine;
 
-public class Mob : MonoBehaviour
+public class Mob : Health
 {
     [SerializeField]
     private int Damage = 10;
@@ -8,22 +10,15 @@ public class Mob : MonoBehaviour
     [SerializeField]
     private float Speed = 20.0f;
 
-    [SerializeField]
-    private int Xp = 10;
-
     private Transform target;
     private float nextAvailableDamageTime = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (target == null)
+        if (GameObject.FindWithTag("Player") != null)
         {
-
-            if (GameObject.FindWithTag("Player") != null)
-            {
-                target = GameObject.FindWithTag("Player").transform;
-            }
+            target = GameObject.FindWithTag("Player").transform;
         }
     }
 
@@ -40,7 +35,7 @@ public class Mob : MonoBehaviour
         rb.velocity = Vector3.Lerp(rb.velocity, Speed * transform.forward, 0.05f);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         if (nextAvailableDamageTime <= Time.time && collision.gameObject.tag == "Player")
         {

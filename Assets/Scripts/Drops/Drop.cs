@@ -15,6 +15,7 @@ public abstract class Drop : MonoBehaviour
             transform.position += Vector3.up * (renderer.bounds.size.y / 2 + 1);
         }
     }
+
     void Update()
     {
         transform.RotateAround(transform.position, Vector3.up, Mathf.PI / 4 * Time.deltaTime);

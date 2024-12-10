@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
@@ -19,7 +21,9 @@ public class Health : MonoBehaviour
     private float MaxHealth = 100f;
     private float currentHealth;
 
-    void Start()
+    public readonly UnityEvent OnDie = new();
+
+    public Health()
     {
         currentHealth = MaxHealth;
     }
@@ -33,7 +37,6 @@ public class Health : MonoBehaviour
             Die();
         }
     }
-
 
     public void RestoreHealth(float health)
     {
@@ -51,6 +54,7 @@ public class Health : MonoBehaviour
             Instantiate(Drop, transform.position + diffPos, transform.rotation);
         }
 
+        OnDie.Invoke();
         XPManager.Instance.IncrementXP(Xp);
         Destroy(gameObject);
     }
