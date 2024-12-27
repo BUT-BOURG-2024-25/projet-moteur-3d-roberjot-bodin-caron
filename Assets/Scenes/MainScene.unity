@@ -1127,8 +1127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Mobs:
-  - {fileID: 3503211143392166814, guid: d7fab6fc00b4a8545bd4ede4f278bc1b, type: 3}
-  - {fileID: -6959979583917852395, guid: 18d4b23b2f652744ebc6af7319347aa6, type: 3}
+  - {fileID: 1778767624453828928, guid: f80e7f0c2ee82944a871fec3f58a4782, type: 3}
+  - {fileID: 5586364545931823100, guid: 34b14b602215d834d8e9270f0df9f098, type: 3}
   Player: {fileID: 1347733891}
   MobLabel: {fileID: 1359829415}
   groundLayer:

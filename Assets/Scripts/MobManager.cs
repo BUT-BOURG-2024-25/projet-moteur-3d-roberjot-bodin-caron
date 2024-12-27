@@ -40,10 +40,9 @@ public class MobManager : Singleton<MobManager>
         {
             int random = Random.Range(0, Mobs.Count);
             Mob mobToSpawn = Mobs[random];
-            MeshRenderer renderer = mobToSpawn.GetComponent<MeshRenderer>();
-            if (renderer == null) return;
+      
 
-            float spawnY = hit.point.y + renderer.bounds.size.y / 2;
+            float spawnY = hit.point.y + 0.01f;
 
             Vector3 randomSpawnPosition = new(spawnX, spawnY, spawnZ);
 

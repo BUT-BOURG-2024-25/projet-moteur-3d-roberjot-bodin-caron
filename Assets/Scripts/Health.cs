@@ -44,12 +44,12 @@ public class Health : MonoBehaviour
     void Die()
     {
         System.Random randomizr = new System.Random();
-        MeshRenderer renderer = GetComponent<MeshRenderer>();
-        Vector3 diffPos = Vector3.down * renderer.bounds.size.y / 2;
+        Rigidbody rb = GetComponent<Rigidbody>();
+        Vector3 offset = Vector3.down*0.8f;
 
         if(randomizr.NextDouble() <= DropLuck)
         {
-            Instantiate(Drop, transform.position + diffPos, transform.rotation);
+            Instantiate(Drop, transform.position + offset, transform.rotation);
         }
 
         OnDie.Invoke();
