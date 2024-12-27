@@ -10,11 +10,14 @@ public class HealthManager : Singleton<HealthManager>
     [SerializeField]
     private Button RestartButton;
 
+    
+
     private int currentHealth;
 
     [Header("Interface")]
     [SerializeField] UnityEngine.UI.Image Fill;
     [SerializeField] UnityEngine.UI.Text CurrentHealthText;
+    [SerializeField] Image RestartUI;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +29,8 @@ public class HealthManager : Singleton<HealthManager>
             Time.timeScale = 1;
         });
 
-        RestartButton.gameObject.SetActive(false);
+        //RestartButton.gameObject.SetActive(false);
+        RestartUI.gameObject.SetActive(false);
         currentHealth = MaxHealth;
         UpdateInterface();
     }
@@ -46,10 +50,15 @@ public class HealthManager : Singleton<HealthManager>
         UpdateInterface();
 
         if (currentHealth <= 0) {
-            RestartButton.gameObject.SetActive(true);
-
-            Time.timeScale = 0;
+            this.showRestartUI();
         }
+    }
+
+    private void showRestartUI()
+    {
+       // RestartButton.gameObject.SetActive(true);
+        RestartUI.gameObject.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void RestoreHealth(int health)
