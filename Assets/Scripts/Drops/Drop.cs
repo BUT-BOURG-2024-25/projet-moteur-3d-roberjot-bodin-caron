@@ -6,6 +6,9 @@ public abstract class Drop : MonoBehaviour
 {
     public abstract void OnCollect();
 
+    [SerializeField]
+    private float Lifetime = 30f;
+
     void Start()
     {
         MeshRenderer renderer = GetComponent<MeshRenderer>();
@@ -14,6 +17,7 @@ public abstract class Drop : MonoBehaviour
         {
             transform.position += Vector3.up * (renderer.bounds.size.y / 2 + 1);
         }
+        Destroy(gameObject, Lifetime);
     }
 
     void Update()
