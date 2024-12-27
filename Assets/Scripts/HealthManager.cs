@@ -14,6 +14,7 @@ public class HealthManager : Singleton<HealthManager>
 
     [Header("Interface")]
     [SerializeField] UnityEngine.UI.Image Fill;
+    [SerializeField] UnityEngine.UI.Text CurrentHealthText;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +60,10 @@ public class HealthManager : Singleton<HealthManager>
 
     void UpdateInterface()
     {
-        Fill.fillAmount = (float)currentHealth/ (float)MaxHealth;
+        if(Fill != null)
+            Fill.fillAmount = (float)currentHealth/ (float)MaxHealth;
+
+        if (CurrentHealthText != null)
+            CurrentHealthText.text = "Health : " + currentHealth + "/" + MaxHealth;
     }
 }

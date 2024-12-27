@@ -598,6 +598,7 @@ MonoBehaviour:
   MaxHealth: 125
   RestartButton: {fileID: 52356865}
   Fill: {fileID: 1102010321}
+  CurrentHealthText: {fileID: 617171693}
 --- !u!1 &248362189
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,6 +688,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExperienceFill: {fileID: 1557762818}
+  CurrentLevelText: {fileID: 1724852511}
+  CurrentprogressText: {fileID: 1078648765}
 --- !u!1 &431183973
 GameObject:
   m_ObjectHideFlags: 0

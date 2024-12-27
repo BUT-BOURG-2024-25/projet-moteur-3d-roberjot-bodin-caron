@@ -7,6 +7,9 @@ public class XPManager : Singleton<XPManager>
     [Header("Interface")]
     [SerializeField] UnityEngine.UI.Image ExperienceFill;
 
+    [SerializeField] UnityEngine.UI.Text CurrentLevelText;
+    [SerializeField] UnityEngine.UI.Text CurrentprogressText;
+
     void Start()
     {
         UpdateInterface();
@@ -40,6 +43,16 @@ public class XPManager : Singleton<XPManager>
         else
         {
             print("ExperienceFill n'est pas assigné !");
+        }
+
+        if (CurrentLevelText != null)
+        {
+            CurrentLevelText.text = "XP level : "+currentLevel;
+        }
+
+        if (CurrentprogressText != null)
+        {
+            CurrentprogressText.text = (totalExperience-currentLevelExperience) + "/" + (nextLevelsExperience - currentLevelExperience);
         }
     }
 
