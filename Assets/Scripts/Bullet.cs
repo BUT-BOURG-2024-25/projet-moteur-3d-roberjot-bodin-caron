@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour {
         float distance = Time.deltaTime * Speed;
         Vector3 nextPosition = transform.position + transform.up * distance;
 
-        if (Physics.Raycast(transform.position, transform.up, out RaycastHit hit, distance) || Physics.Raycast(nextPosition, -transform.up, out hit, distance))
+        if ((Physics.Raycast(transform.position, transform.up, out RaycastHit hit, distance) || Physics.Raycast(nextPosition, -transform.up, out hit, distance)) && hit.collider.CompareTag("Mob"))
         {
             collide(hit.collider.gameObject);
         }
