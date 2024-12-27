@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour {
         Health health = objecthit.GetComponent<Health>();
         Rigidbody body = objecthit.GetComponent<Rigidbody>();
         health?.TakeDamage(Damage + StatsManager.Instance.DamageBoost);
-        body?.AddForce(transform.up * 50, ForceMode.Impulse);
+        body?.AddForce(transform.up * 10, ForceMode.Impulse);
         
         Destroy(gameObject);
     }
