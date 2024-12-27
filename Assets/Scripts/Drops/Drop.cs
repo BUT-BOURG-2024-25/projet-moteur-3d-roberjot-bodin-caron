@@ -25,9 +25,9 @@ public abstract class Drop : MonoBehaviour
         transform.RotateAround(transform.position, Vector3.up, Mathf.PI / 4 * Time.deltaTime);
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.tag == "Player")
+        if(other.gameObject.tag == "Player")
         {
             OnCollect();
             Destroy(gameObject);
