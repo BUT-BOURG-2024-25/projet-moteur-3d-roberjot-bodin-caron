@@ -9,6 +9,9 @@ public class StatsManager : Singleton<StatsManager>
     public float DamageBoost = 0;
 
     [SerializeField]
+    private Image UpgradePanel;
+
+    [SerializeField]
     private Button DamageUpgradeButton;
 
     [SerializeField]
@@ -40,8 +43,7 @@ public class StatsManager : Singleton<StatsManager>
         upgrading = true;
         Time.timeScale = 0;
 
-        HealthUpgradeButton.gameObject.SetActive(true);
-        DamageUpgradeButton.gameObject.SetActive(true);
+        UpgradePanel.gameObject.SetActive(true);
     }
 
     private void EndUpgrade()
@@ -49,7 +51,6 @@ public class StatsManager : Singleton<StatsManager>
         upgrading = false;
         Time.timeScale = 1;
 
-        HealthUpgradeButton.gameObject.SetActive(false);
-        DamageUpgradeButton.gameObject.SetActive(false);
+        UpgradePanel.gameObject.SetActive(false);
     }
 }
