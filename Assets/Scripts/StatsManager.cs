@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class StatsManager : Singleton<StatsManager>
 {
     public float DamageBoost = 0;
+    [SerializeField]
+    private float defaultFireRate = 0.5f;
 
     [SerializeField]
     private Image UpgradePanel;
@@ -16,6 +18,10 @@ public class StatsManager : Singleton<StatsManager>
 
     [SerializeField]
     private Button HealthUpgradeButton;
+
+
+    [SerializeField]
+    private Button FireRateUpgradeButton;
 
     private bool upgrading = false;
 
@@ -31,6 +37,16 @@ public class StatsManager : Singleton<StatsManager>
         {
             if (!upgrading) return;
             HealthManager.Instance.IncrementMaxHealth(20);
+            EndUpgrade();
+        });
+
+        FireRateUpgradeButton.onClick.AddListener(() =>
+        {
+            if (!upgrading) return;
+            if(defaultFireRate > 0.01)
+            {
+                defaultFireRate = 0.9f * defaultFireRate;
+            }
             EndUpgrade();
         });
 
@@ -52,5 +68,11 @@ public class StatsManager : Singleton<StatsManager>
         Time.timeScale = 1;
 
         UpgradePanel.gameObject.SetActive(false);
+    }
+
+
+    public float getFireRate()
+    {
+        return defaultFireRate;
     }
 }

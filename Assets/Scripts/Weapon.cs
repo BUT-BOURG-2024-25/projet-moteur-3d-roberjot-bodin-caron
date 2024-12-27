@@ -8,20 +8,19 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private Transform FirePoint; // Le point d'où les balles sont tirées
 
-    [SerializeField]
-    private float FireRate = 0.5f; // Temps entre les tirs
+
     private float nextFireTime;
 
     void Start()
     {
-        nextFireTime = Time.time + FireRate;
+        nextFireTime = Time.time + StatsManager.Instance.getFireRate();
     }
 
     void Update()
     {
         if (Time.time >= nextFireTime && UiManager.instance.RotationJoystick.Direction.magnitude > 0)
         {
-            nextFireTime = Time.time + FireRate;
+            nextFireTime = Time.time + StatsManager.Instance.getFireRate();
             Shoot();
         }
     }
