@@ -57,7 +57,8 @@ public class XPManager : Singleton<XPManager>
     }
 
     int GetLevel()
-    {
+    {        
+        
         int level = 0;
         int currentXp = totalExperience;
 
@@ -71,6 +72,20 @@ public class XPManager : Singleton<XPManager>
 
     int GetXpForLevel(int level)
     {
-        return (int)(20 * Mathf.Pow(level, 2));
+        //return (int)(20 * Mathf.Pow(level, 2));
+        int sum = 0;
+        for (int i = 0; i < level; i++)
+        {
+            sum += GetXpForLevelUp(i);
+        }
+        return sum;
     }
+
+    private int GetXpForLevelUp(int levelToUp)
+    {
+        return (int)(10 * Mathf.Pow(levelToUp, 2));
+
+    }
+
+
 }
