@@ -3,3 +3,7 @@
 - ROBERJOT Aloïs
 - CARON Maxence
 - BODIN Mathis
+
+
+### Téléchargement 
+APK disponible sur la page [releases](https://github.com/BUT-BOURG-2024-25/projet-moteur-3d-roberjot-bodin-caron/releases/tag/v1.0)
